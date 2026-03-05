@@ -43,7 +43,7 @@ app.use(express.json());
 
 // Basic Route
 app.get('/', (req, res) => {
-    res.send('CodeConnect API is running');
+    res.send('CodeConnect API is running - v1.0.1');
 });
 
 
