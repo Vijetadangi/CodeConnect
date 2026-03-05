@@ -15,27 +15,23 @@ connectDB();
 
 
 // CORS Configuration (IMPORTANT)
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5001',
+    'https://codeconnect-frontend-sepia.vercel.app',
+    'https://codeconnect-frontend.vercel.app'
+];
+
 app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl)
-        if (!origin) return callback(null, true);
-
-        const allowedOrigins = [
-            /^http:\/\/localhost:\d+$/, // any localhost port
-            /^https:\/\/codeconnect.*\.vercel\.app$/, // any Vercel deployment
-            'https://codeconnect-frontend-sepia.vercel.app', // explicit Vercel URL
-        ];
-
-        const isAllowed = allowedOrigins.some(pattern =>
-            pattern instanceof RegExp ? pattern.test(origin) : pattern === origin
-        );
-        if (isAllowed) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
             callback(null, true);
         } else {
-            callback(new Error(`CORS: Origin ${origin} not allowed`));
+            callback(new Error('CORS: Origin not allowed'));
         }
     },
-    credentials: true
+    credentials: true,
+    optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
 
 
