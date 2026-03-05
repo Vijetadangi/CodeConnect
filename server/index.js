@@ -22,10 +22,13 @@ app.use(cors({
 
         const allowedOrigins = [
             /^http:\/\/localhost:\d+$/, // any localhost port
-            /^https:\/\/codeconnect.*\.vercel\.app$/, // any Vercel deployment of this project
+            /^https:\/\/codeconnect.*\.vercel\.app$/, // any Vercel deployment
+            'https://codeconnect-frontend-sepia.vercel.app', // explicit Vercel URL
         ];
 
-        const isAllowed = allowedOrigins.some(pattern => pattern.test(origin));
+        const isAllowed = allowedOrigins.some(pattern =>
+            pattern instanceof RegExp ? pattern.test(origin) : pattern === origin
+        );
         if (isAllowed) {
             callback(null, true);
         } else {
