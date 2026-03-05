@@ -1,27 +1,38 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Configure dotenv to load from root directory
+// Load environment variables
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const connectDB = require('./config/db');
 
 const app = express();
 
+// Connect Database
+connectDB();
+
+
+// CORS Configuration (IMPORTANT)
+app.use(cors({
+    origin: [
+        "http://localhost:5173", // local development
+        "https://codeconnect-frontend.vercel.app" // your Vercel frontend
+    ],
+    credentials: true
+}));
+
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
-// Database Connection
-connectDB();
 
 // Basic Route
 app.get('/', (req, res) => {
     res.send('CodeConnect API is running');
 });
+
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
@@ -34,11 +45,11 @@ app.use('/api/contact', require('./routes/contact'));
 app.use('/api/notifications', require('./routes/notifications'));
 
 
+// Static uploads
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 
-
-
+// Start server
 const PORT = process.env.PORT || 5000;
 
 const startServer = (port) => {
