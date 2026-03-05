@@ -204,42 +204,34 @@ const Landing = () => {
                   <div className="flex items-start gap-4">
                     <Mail className="h-6 w-6 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium">ramuparasa02@gmail.com</p>
+                      <p className="font-medium">18vijetdangi@gmail.com</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
                     <Phone className="h-6 w-6 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium">+91 7207674897</p>
+                      <p className="font-medium">+91 8168888187</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
                     <MapPin className="h-6 w-6 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium">1-78 Narsapuram</p>
-                      <p className="opacity-90">West Godavari, Andhra Pradesh</p>
+                      <p className="font-medium"> Madina (Rohtak)</p>
+                      <p className="opacity-90">Haryana, India</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8 flex gap-4">
-                  <a href="https://github.com/balaji-sri-ram" target="_blank" rel="noopener noreferrer"
+                  <a href="https://github.com/Vijetadangi" target="_blank" rel="noopener noreferrer"
                     className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary-foreground hover:bg-primary-foreground/10 transition-colors">
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href="https://www.linkedin.com/in/balaji-sri-ram-parasa" target="_blank" rel="noopener noreferrer"
+                  <a href="https://www.linkedin.com/in/vijeta-dangi/" target="_blank" rel="noopener noreferrer"
                     className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary-foreground hover:bg-primary-foreground/10 transition-colors">
                     <Linkedin className="h-5 w-5" />
-                  </a>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary-foreground hover:bg-primary-foreground/10 transition-colors">
-                    <Facebook className="h-5 w-5" />
-                  </a>
-                  <a href="https://www.instagram.com/ramu__parasa" target="_blank" rel="noopener noreferrer"
-                    className="inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary-foreground hover:bg-primary-foreground/10 transition-colors">
-                    <Instagram className="h-5 w-5" />
                   </a>
                 </div>
               </div>
@@ -293,60 +285,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Developer Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-5xl">
-            <div className="flex flex-col md:flex-row items-center gap-12">
-              {/* Developer Image (Left) */}
-              <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-hero rounded-[2rem] transform rotate-6 opacity-30 blur-lg"></div>
-                  <img
-                    src="/developer.jpg"
-                    alt="Balaji Sri Ram Parasa"
-                    className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-[2rem] shadow-2xl border-4 border-background"
-                  />
-                </div>
-              </div>
 
-              {/* Developer Info (Right) */}
-              <div className="w-full md:w-1/2 text-center md:text-left">
-                <h2 className="text-3xl font-bold mb-4">Meet the Developer</h2>
-                <h3 className="text-xl text-primary font-semibold mb-6 flex items-center justify-center md:justify-start gap-2">
-                  <a href="https://balaji-sri-ram.github.io/Portfolio" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline hover:no-underline">
-                    Balaji Sri Ram Parasa
-                  </a>
-                  <CheckCircle2 className="h-5 w-5 fill-primary text-background" />
-                </h3>
-
-                <div className="space-y-4 text-muted-foreground mb-8 text-lg">
-                  <p>
-                    Passionate Full Stack Developer with a knack for building scalable web applications.
-                    Dedicated to creating seamless user experiences and robust backend systems.
-                  </p>
-                  <p>
-                    Experienced in the MERN stack and modern web technologies. Always learning,
-                    always coding, and always ready for the next challenge.
-                  </p>
-                </div>
-
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact-section');
-                    contactSection?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="group"
-                >
-                  Contact Me
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20">

@@ -1,44 +1,58 @@
 const express = require('express');
 const router = express.Router();
-const Problem = require('../models/Problem');
+const fs = require('fs');
+const path = require('path');
 
 // @route   GET /api/problems
-// @desc    Get all problems
+// @desc    Get all problems from JSON dataset
 // @access  Public
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     try {
-        let query = Problem.find().select('-input -output'); // Hide test cases from list
+        const filePath = path.join(__dirname, '../../src/Problems/final_500_real_problems_cleaned.json');
+        const rawData = fs.readFileSync(filePath, 'utf8');
+        let problems = JSON.parse(rawData);
+
+        // Inject an _id onto each problem (using the index as string + 'jsonId') so the React components stop throwing missing key errors when accessing _id
+        problems = problems.map((p, idx) => ({
+            ...p,
+            _id: `json-${idx}`
+        }));
 
         if (req.query.limit) {
-            query = query.limit(parseInt(req.query.limit));
+            problems = problems.slice(0, parseInt(req.query.limit));
         }
 
-        const problems = await query;
         res.json(problems);
     } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+        console.error("Error reading problems JSON file:", err.message);
+        res.status(500).send('Server error loading problems dataset');
     }
 });
 
 // @route   GET /api/problems/:id
-// @desc    Get problem by ID
+// @desc    Get problem by ID from JSON dataset
 // @access  Public
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
     try {
-        const problem = await Problem.findById(req.params.id);
+        const filePath = path.join(__dirname, '../../src/Problems/final_500_real_problems_cleaned.json');
+        const rawData = fs.readFileSync(filePath, 'utf8');
+        const problems = JSON.parse(rawData);
 
-        if (!problem) {
-            return res.status(404).json({ message: 'Problem not found' });
+        const problemId = String(req.params.id);
+
+        // Find problem by stripping 'json-' prefix to get the original index
+        if (problemId.startsWith('json-')) {
+            const index = parseInt(problemId.split('-')[1]);
+            if (index >= 0 && index < problems.length) {
+                const problem = { ...problems[index], _id: problemId };
+                return res.json(problem);
+            }
         }
 
-        res.json(problem);
+        return res.status(404).json({ message: 'Problem not found in dataset' });
     } catch (err) {
         console.error(err.message);
-        if (err.kind === 'ObjectId') {
-            return res.status(404).json({ message: 'Problem not found' });
-        }
-        res.status(500).send('Server error');
+        res.status(500).send('Server error loader single problem');
     }
 });
 
