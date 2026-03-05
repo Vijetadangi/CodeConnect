@@ -7,11 +7,7 @@ const SubmissionSchema = new mongoose.Schema({
         required: true,
     },
     problem: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Problem',
-        // required: true, // Can be null if it's a company challenge? Or use a separate field? 
-        // Let's keep it optional or use dynamic refs if needed. 
-        // For now, let's assume standard problems have this.
+        type: String, // Can be a MongoDB ObjectId or a JSON string ID like 'json-0'
     },
     challenge: {
         type: mongoose.Schema.Types.ObjectId,
