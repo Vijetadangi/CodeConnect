@@ -16,10 +16,22 @@ connectDB();
 
 // CORS Configuration (IMPORTANT)
 app.use(cors({
-    origin: [
-        "http://localhost:5173", // local development
-        "https://codeconnect-frontend.vercel.app" // your Vercel frontend
-    ],
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl)
+        if (!origin) return callback(null, true);
+
+        const allowedOrigins = [
+            /^http:\/\/localhost:\d+$/, // any localhost port
+            /^https:\/\/codeconnect.*\.vercel\.app$/, // any Vercel deployment of this project
+        ];
+
+        const isAllowed = allowedOrigins.some(pattern => pattern.test(origin));
+        if (isAllowed) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS: Origin ${origin} not allowed`));
+        }
+    },
     credentials: true
 }));
 
