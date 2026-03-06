@@ -366,7 +366,7 @@ const Landing = () => {
       {/* Footer */}
       <footer className="border-t border-border py-8">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>© 2025 CodeConnect. Empowering developers to achieve their career goals through hard work, consistency, and placement in their dream companies.</p>
+          <p>© 2025 CodeConnect - v1.0.2. Empowering developers to achieve their career goals through hard work, consistency, and placement in their dream companies.</p>
         </div>
       </footer>
     </div>
