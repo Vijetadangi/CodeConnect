@@ -204,7 +204,7 @@ const Landing = () => {
                   <div className="flex items-start gap-4">
                     <Mail className="h-6 w-6 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium">18vijetdangi@gmail.com</p>
+                      <p className="font-medium">18vijetadangi@gmail.com</p>
                     </div>
                   </div>
 
